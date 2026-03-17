@@ -176,3 +176,14 @@
 - Publish: `npm publish --access public --otp="<otp>"` (run from the package dir).
 - Verify without local npmrc side effects: `npm view <pkg> version --userconfig "$(mktemp)"`.
 - Kill the tmux session after publish.
+
+## Cursor Cloud specific instructions
+
+- **Node/pnpm/Bun** are pre-installed (Node 22+, pnpm via corepack, Bun). No manual version setup needed.
+- **Update script** runs `pnpm install` on VM startup. After that, run `pnpm build` before using CLI commands or starting the gateway.
+- **Gateway in dev mode**: `OPENCLAW_SKIP_CHANNELS=1 OPENCLAW_GATEWAY_TOKEN=dev-test-token pnpm openclaw --dev gateway --force`. Dev mode listens on port 19001 by default. Control UI is at `http://127.0.0.1:19001/?token=dev-test-token`.
+- **Tests** use a custom parallel runner (`pnpm test` calls `node scripts/test-parallel.mjs`) which spawns multiple Vitest processes. Expect ~9 minutes on cloud VMs. All tests are mocked; no API keys needed.
+- **Lint/format/type-check**: `pnpm check` (runs `oxfmt --check`, `tsgo`, `oxlint --type-aware`). Fix format issues with `pnpm format` (uses oxfmt).
+- **Build** (`pnpm build`) calls `tsdown` + several post-build scripts. The dev CLI runner (`pnpm openclaw`) auto-rebuilds if `dist/` is stale, so explicit builds are only needed for type-checking or when `dist/` is missing.
+- **Pre-commit hook** (`git-hooks/pre-commit`) auto-runs lint+format on staged files. Set via `prepare` script in package.json (`git config core.hooksPath git-hooks`).
+- Standard commands are documented in AGENTS.md "Build, Test, and Development Commands" section and in `package.json` scripts.
