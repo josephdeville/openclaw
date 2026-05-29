@@ -1,0 +1,995 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clay Coaching | Clay Works of Art</title>
+    <meta
+      name="description"
+      content="Live one-on-one Clay coaching for operators and consultants who want to build cleaner, more credit-efficient workflows."
+    />
+    <link rel="canonical" href="https://clayworksofart.com/clay-coaching" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900&family=Archivo:wght@500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
+    <style>
+      :root {
+        --orange: #ef9648;
+        --green: #0f364a;
+        --blue: #2256c7;
+        --almond: #f1dcc9;
+        --teal: #33b7a8;
+        --ink: #0f364a;
+        --paper: #fbf7f2;
+        --white: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Nunito", sans-serif;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      .display {
+        font-family: "Archivo", sans-serif;
+        letter-spacing: -0.02em;
+        line-height: 1.05;
+      }
+
+      .wrap {
+        margin: 0 auto;
+        max-width: 1080px;
+        padding: 0 28px;
+      }
+
+      .topbar {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        margin: 0 auto;
+        max-width: 1080px;
+        padding: 22px 28px;
+      }
+
+      .brand {
+        align-items: center;
+        background: var(--green);
+        border-radius: 13px;
+        box-shadow: 0 6px 18px rgba(15, 54, 74, 0.18);
+        color: var(--white);
+        display: flex;
+        gap: 12px;
+        padding: 9px 16px;
+      }
+
+      .mark {
+        background: var(--paper);
+        border-radius: 11px;
+        color: var(--orange);
+        display: grid;
+        flex: none;
+        font-family: "Archivo", sans-serif;
+        font-size: 22px;
+        font-weight: 900;
+        height: 42px;
+        place-items: center;
+        width: 42px;
+      }
+
+      .brand b {
+        display: block;
+        font-family: "Archivo", sans-serif;
+        font-size: 16px;
+        font-weight: 800;
+        line-height: 1.1;
+      }
+
+      .brand small {
+        color: #cfdbe1;
+        display: block;
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .topcta,
+      .btn {
+        font-family: "Archivo", sans-serif;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .topcta {
+        border: 2px solid var(--green);
+        border-radius: 30px;
+        color: var(--green);
+        font-size: 13px;
+        padding: 9px 18px;
+        transition: 0.2s;
+      }
+
+      .topcta:hover,
+      .topcta:focus-visible {
+        background: var(--green);
+        color: var(--white);
+      }
+
+      .hero {
+        overflow: hidden;
+        padding: 54px 0 64px;
+        position: relative;
+      }
+
+      .hero::before,
+      .hero::after {
+        border-radius: 50%;
+        content: "";
+        position: absolute;
+      }
+
+      .hero::before {
+        background: radial-gradient(circle at 30% 30%, var(--orange), rgba(239, 150, 72, 0) 70%);
+        height: 520px;
+        opacity: 0.55;
+        right: -120px;
+        top: -120px;
+        width: 520px;
+      }
+
+      .hero::after {
+        background: radial-gradient(circle at 50% 50%, var(--teal), rgba(51, 183, 168, 0) 70%);
+        bottom: -180px;
+        height: 480px;
+        left: -160px;
+        opacity: 0.32;
+        width: 480px;
+      }
+
+      .eyebrow {
+        align-items: center;
+        background: var(--white);
+        border: 1px solid #e7ddd2;
+        border-radius: 30px;
+        box-shadow: 0 4px 14px rgba(15, 54, 74, 0.06);
+        color: var(--green);
+        display: inline-flex;
+        font-size: 12.5px;
+        font-weight: 800;
+        gap: 9px;
+        letter-spacing: 0.06em;
+        padding: 7px 15px;
+        position: relative;
+        text-transform: uppercase;
+        z-index: 2;
+      }
+
+      .eyebrow .dot {
+        background: var(--teal);
+        border-radius: 50%;
+        height: 8px;
+        width: 8px;
+      }
+
+      .headline {
+        color: var(--green);
+        font-size: clamp(40px, 6.4vw, 72px);
+        font-weight: 900;
+        margin-top: 22px;
+        max-width: 780px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .headline em {
+        color: var(--orange);
+        font-style: normal;
+      }
+
+      .sub {
+        color: #3a4d56;
+        font-size: clamp(17px, 2.2vw, 21px);
+        font-weight: 500;
+        margin-top: 20px;
+        max-width: 600px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .herobtns {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 34px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .btn {
+        border-radius: 32px;
+        display: inline-block;
+        font-size: 15px;
+        padding: 15px 30px;
+        transition:
+          transform 0.15s,
+          box-shadow 0.2s;
+      }
+
+      .btn-primary {
+        background: var(--orange);
+        box-shadow: 0 10px 24px rgba(239, 150, 72, 0.4);
+        color: var(--green);
+      }
+
+      .btn-primary:hover,
+      .btn-primary:focus-visible {
+        box-shadow: 0 14px 30px rgba(239, 150, 72, 0.5);
+        transform: translateY(-2px);
+      }
+
+      .btn-ghost {
+        border: 2px solid #cdbfae;
+        color: var(--green);
+      }
+
+      .hero-art {
+        max-width: 34vw;
+        opacity: 0.95;
+        pointer-events: none;
+        position: absolute;
+        right: 4%;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 300px;
+        z-index: 1;
+      }
+
+      .float-1 {
+        animation: floaty 6s ease-in-out infinite;
+      }
+
+      @keyframes floaty {
+        0%,
+        100% {
+          transform: translateY(-50%);
+        }
+
+        50% {
+          transform: translateY(calc(-50% - 12px));
+        }
+      }
+
+      .strip {
+        background: var(--green);
+        color: var(--white);
+        overflow: hidden;
+        padding: 30px 0;
+        position: relative;
+      }
+
+      .strip::before {
+        background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1.4px, transparent 1.4px);
+        background-size: 22px 22px;
+        content: "";
+        inset: 0;
+        opacity: 0.8;
+        position: absolute;
+      }
+
+      .strip .wrap {
+        display: grid;
+        gap: 26px;
+        grid-template-columns: repeat(3, 1fr);
+        position: relative;
+        z-index: 2;
+      }
+
+      .strip .item b {
+        color: var(--orange);
+        display: block;
+        font-family: "Archivo", sans-serif;
+        font-size: 30px;
+        font-weight: 800;
+      }
+
+      .strip .item span {
+        color: #cfdbe1;
+        font-size: 14.5px;
+        font-weight: 500;
+      }
+
+      .block {
+        overflow: hidden;
+        padding: 70px 0;
+        position: relative;
+      }
+
+      .block .wrap {
+        position: relative;
+        z-index: 2;
+      }
+
+      .section-eyebrow {
+        color: var(--orange);
+        font-family: "Archivo", sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .section-title {
+        color: var(--green);
+        font-size: clamp(28px, 4vw, 42px);
+        font-weight: 900;
+        margin: 10px 0 14px;
+        max-width: 620px;
+      }
+
+      .section-lead {
+        color: #3a4d56;
+        font-size: 17px;
+        font-weight: 500;
+        max-width: 620px;
+      }
+
+      .blob {
+        border-radius: 46% 54% 58% 42% / 52% 44% 56% 48%;
+        filter: blur(2px);
+        position: absolute;
+        z-index: 0;
+      }
+
+      .who {
+        background: var(--white);
+        border: 1px solid #ece2d6;
+        border-radius: 22px;
+        display: grid;
+        gap: 30px;
+        grid-template-columns: 1fr 1fr;
+        margin-top: 34px;
+        padding: 34px 36px;
+      }
+
+      .who h4 {
+        align-items: center;
+        color: var(--green);
+        display: flex;
+        font-family: "Archivo", sans-serif;
+        font-size: 15px;
+        font-weight: 800;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+
+      .pip {
+        border-radius: 6px;
+        flex: none;
+        height: 18px;
+        width: 18px;
+      }
+
+      .who ul,
+      .tier ul {
+        list-style: none;
+      }
+
+      .who li,
+      .tier li {
+        color: #3a4d56;
+        font-size: 15px;
+        font-weight: 500;
+        padding: 5px 0 5px 24px;
+        position: relative;
+      }
+
+      .who li::before {
+        border-radius: 50%;
+        content: "";
+        height: 8px;
+        left: 0;
+        position: absolute;
+        top: 13px;
+        width: 8px;
+      }
+
+      .fit li::before {
+        background: var(--teal);
+      }
+
+      .nofit li::before {
+        background: #d8c7b4;
+      }
+
+      .tiers,
+      .steps {
+        display: grid;
+        gap: 22px;
+        margin-top: 40px;
+      }
+
+      .tiers {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .tier,
+      .step {
+        background: var(--white);
+        border: 1px solid #ece2d6;
+        border-radius: 22px;
+        padding: 30px 26px;
+      }
+
+      .tier {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+
+      .tier:hover {
+        box-shadow: 0 18px 40px rgba(15, 54, 74, 0.1);
+        transform: translateY(-4px);
+      }
+
+      .tier.featured {
+        border: 2px solid var(--orange);
+        box-shadow: 0 18px 44px rgba(239, 150, 72, 0.2);
+      }
+
+      .flag {
+        background: var(--orange);
+        border-radius: 20px;
+        color: var(--green);
+        font-family: "Archivo", sans-serif;
+        font-size: 11px;
+        font-weight: 800;
+        left: 26px;
+        letter-spacing: 0.08em;
+        padding: 5px 13px;
+        position: absolute;
+        text-transform: uppercase;
+        top: -13px;
+      }
+
+      .tname {
+        color: var(--green);
+        font-family: "Archivo", sans-serif;
+        font-size: 20px;
+        font-weight: 800;
+      }
+
+      .tfor {
+        color: #7c8d95;
+        font-size: 13.5px;
+        font-weight: 600;
+        margin-top: 3px;
+        min-height: 38px;
+      }
+
+      .price {
+        align-items: baseline;
+        display: flex;
+        gap: 6px;
+        margin: 18px 0 4px;
+      }
+
+      .price b {
+        color: var(--green);
+        font-family: "Archivo", sans-serif;
+        font-size: 42px;
+        font-weight: 900;
+        line-height: 1;
+      }
+
+      .price span {
+        color: #7c8d95;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .perhr {
+        color: var(--teal);
+        font-size: 12.5px;
+        font-weight: 800;
+        letter-spacing: 0.03em;
+      }
+
+      .tier ul {
+        border-top: 1px solid #f0e7db;
+        margin: 20px 0 26px;
+        padding-top: 18px;
+      }
+
+      .tier li::before {
+        color: var(--orange);
+        content: "✓";
+        font-size: 13px;
+        font-weight: 900;
+        left: 0;
+        position: absolute;
+        top: 6px;
+      }
+
+      .pick {
+        background: var(--green);
+        border-radius: 30px;
+        color: var(--white);
+        font-family: "Archivo", sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        margin-top: auto;
+        padding: 13px;
+        text-align: center;
+        text-decoration: none;
+        transition: 0.2s;
+      }
+
+      .featured .pick {
+        background: var(--orange);
+        color: var(--green);
+      }
+
+      .bundle,
+      .stripe-wrap,
+      .upsell {
+        margin-top: 34px;
+      }
+
+      .bundle {
+        align-items: center;
+        background: var(--almond);
+        border-radius: 18px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        justify-content: space-between;
+        margin-top: 24px;
+        padding: 20px 26px;
+      }
+
+      .bundle b {
+        color: var(--green);
+        font-family: "Archivo", sans-serif;
+        font-size: 17px;
+        font-weight: 800;
+      }
+
+      .bundle span {
+        color: #5a4a39;
+        font-size: 14.5px;
+        font-weight: 600;
+      }
+
+      .save,
+      .pricepill {
+        border-radius: 24px;
+        font-family: "Archivo", sans-serif;
+        font-size: 13px;
+        font-weight: 800;
+        padding: 8px 16px;
+      }
+
+      .save {
+        background: var(--green);
+        color: var(--orange);
+      }
+
+      .stripe-wrap {
+        background: var(--white);
+        border: 1px solid #ece2d6;
+        border-radius: 22px;
+        box-shadow: 0 10px 30px rgba(15, 54, 74, 0.06);
+        padding: 26px 20px;
+      }
+
+      stripe-pricing-table {
+        display: block;
+        width: 100%;
+      }
+
+      .steps {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .step .num {
+        background: #fdf0e3;
+        border-radius: 10px;
+        color: var(--orange);
+        display: grid;
+        font-family: "Archivo", sans-serif;
+        font-size: 15px;
+        font-weight: 900;
+        height: 34px;
+        margin-bottom: 14px;
+        place-items: center;
+        width: 34px;
+      }
+
+      .step h4 {
+        color: var(--green);
+        font-family: "Archivo", sans-serif;
+        font-size: 17px;
+        font-weight: 800;
+        margin-bottom: 7px;
+      }
+
+      .step p {
+        color: #3a4d56;
+        font-size: 14.5px;
+        font-weight: 500;
+      }
+
+      .upsell {
+        background: var(--green);
+        border-radius: 24px;
+        color: var(--white);
+        overflow: hidden;
+        padding: 42px 44px;
+        position: relative;
+      }
+
+      .upsell::before {
+        background: radial-gradient(circle, var(--orange), rgba(239, 150, 72, 0) 70%);
+        border-radius: 50%;
+        content: "";
+        height: 300px;
+        opacity: 0.4;
+        position: absolute;
+        right: -80px;
+        top: -80px;
+        width: 300px;
+      }
+
+      .upsell h3,
+      .upsell p,
+      .upsell .pricepill {
+        position: relative;
+        z-index: 2;
+      }
+
+      .upsell h3 {
+        font-size: 24px;
+        font-weight: 800;
+      }
+
+      .upsell p {
+        color: #cfdbe1;
+        font-size: 15.5px;
+        font-weight: 500;
+        margin-top: 10px;
+        max-width: 560px;
+      }
+
+      .pricepill {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        display: inline-block;
+        font-size: 14px;
+        margin-top: 18px;
+      }
+
+      .pricepill em {
+        color: var(--orange);
+        font-style: normal;
+      }
+
+      footer {
+        background: var(--paper);
+        padding: 46px 0 60px;
+        text-align: center;
+      }
+
+      .footer-logo-chip {
+        background: var(--green);
+        border-radius: 16px;
+        color: var(--white);
+        display: inline-flex;
+        flex-direction: column;
+        gap: 4px;
+        margin: 0 auto 22px;
+        padding: 16px 26px;
+      }
+
+      .footer-logo-chip b {
+        color: var(--orange);
+        font-family: "Archivo", sans-serif;
+        font-size: 24px;
+        font-weight: 900;
+      }
+
+      .rule {
+        background: var(--orange);
+        border-radius: 3px;
+        height: 3px;
+        margin: 0 auto 26px;
+        width: 60px;
+      }
+
+      .cta-line {
+        color: var(--green);
+        font-family: "Archivo", sans-serif;
+        font-size: clamp(24px, 3.4vw, 34px);
+        font-weight: 900;
+        margin: 0 auto 22px;
+        max-width: 560px;
+      }
+
+      .contact {
+        color: #5a6b73;
+        font-size: 14.5px;
+        font-weight: 600;
+        margin-top: 24px;
+      }
+
+      .contact a {
+        color: var(--blue);
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      @media (max-width: 900px) {
+        .hero-art {
+          display: none;
+        }
+      }
+
+      @media (max-width: 880px) {
+        .tiers {
+          grid-template-columns: 1fr;
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 420px;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .strip .wrap,
+        .steps,
+        .who {
+          grid-template-columns: 1fr;
+        }
+
+        .strip .wrap {
+          gap: 18px;
+          text-align: center;
+        }
+
+        .topbar {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="topbar" aria-label="Main navigation">
+      <a class="brand" href="/clay-coaching" aria-label="Clay Works of Art home">
+        <span class="mark">C</span>
+        <span>
+          <b>Clay Works of Art</b>
+          <small>Clay coaching</small>
+        </span>
+      </a>
+      <a class="topcta" href="#checkout">Book a session</a>
+    </nav>
+
+    <header class="hero">
+      <div class="wrap">
+        <span class="eyebrow"><span class="dot"></span> Clay Coaching · 1:1</span>
+        <h1 class="headline">Stop burning credits <em>learning the hard way.</em></h1>
+        <p class="sub">
+          Live, one-on-one Clay coaching for operators and consultants who want to actually understand what
+          they're building, not just hand it off. You drive. I show you exactly where to click and why.
+        </p>
+        <div class="herobtns">
+          <a class="btn btn-primary" href="#tiers">See coaching tiers</a>
+          <a class="btn btn-ghost" href="#how">How it works</a>
+        </div>
+      </div>
+
+      <svg class="hero-art float-1" viewBox="0 0 240 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="48" y="40" width="150" height="150" rx="10" fill="#0F364A" />
+        <rect x="58" y="50" width="130" height="130" rx="6" fill="#FBF7F2" />
+        <circle cx="98" cy="92" r="26" fill="#EF9648" />
+        <circle cx="150" cy="120" r="20" fill="#33B7A8" />
+        <path d="M80 150 q30 -34 70 -6 t8 30 H80 Z" fill="#2256C7" opacity=".9" />
+        <rect x="70" y="188" width="9" height="64" rx="4" fill="#0F364A" transform="rotate(8 74 188)" />
+        <rect x="168" y="188" width="9" height="64" rx="4" fill="#0F364A" transform="rotate(-8 172 188)" />
+        <rect x="116" y="190" width="9" height="58" rx="4" fill="#0F364A" />
+        <g transform="translate(150 196)">
+          <path d="M0 18 C0 4 16 -6 34 -4 C54 -2 66 10 64 24 C62 36 50 40 44 34 C40 30 34 30 32 36 C30 44 16 46 8 40 C2 36 0 28 0 18 Z" fill="#EF9648" />
+          <circle cx="16" cy="10" r="4.5" fill="#0F364A" />
+          <circle cx="30" cy="6" r="4.5" fill="#33B7A8" />
+          <circle cx="46" cy="9" r="4.5" fill="#2256C7" />
+          <circle cx="52" cy="22" r="4.5" fill="#FBF7F2" />
+        </g>
+      </svg>
+    </header>
+
+    <main>
+      <div class="strip">
+        <div class="wrap">
+          <div class="item"><b>Since day one</b><span>Working in Clay since its inception, before the bells and whistles</span></div>
+          <div class="item"><b>Credit-first</b><span>Every workflow built to find more people for fewer credits</span></div>
+          <div class="item"><b>You own it</b><span>You leave each session able to run the play yourself</span></div>
+        </div>
+      </div>
+
+      <section class="block" aria-labelledby="who-title">
+        <span class="blob" style="width: 240px; height: 240px; background: rgba(51, 183, 168, 0.16); top: -40px; right: -60px"></span>
+        <div class="wrap">
+          <span class="section-eyebrow">Who this is for</span>
+          <h2 class="section-title" id="who-title">Built for people who like to know what's happening under the hood</h2>
+          <p class="section-lead">If you've watched every tutorial and still just want someone to tell you where to go and what to do, this is the fit.</p>
+          <div class="who">
+            <div class="fit">
+              <h4><span class="pip" style="background: var(--teal)"></span> A great fit if you</h4>
+              <ul>
+                <li>Run Clay for clients and bill for the outcome</li>
+                <li>Want to learn it, not outsource it forever</li>
+                <li>Are tired of guessing which enrichment to run</li>
+                <li>Need to find the right one or two contacts, not a pile of credits gone</li>
+                <li>Want clean, repeatable tables instead of one-off messes</li>
+              </ul>
+            </div>
+            <div class="nofit">
+              <h4><span class="pip" style="background: #d8c7b4"></span> Probably not yet if you</h4>
+              <ul>
+                <li>Want a fully done-for-you build with no involvement</li>
+                <li>Aren't running Clay or a client account right now</li>
+                <li>Need a one-time list and nothing else</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="tiers" style="padding-top: 10px" aria-labelledby="tiers-title">
+        <span class="blob" style="width: 260px; height: 260px; background: rgba(239, 150, 72, 0.14); bottom: -70px; left: -70px"></span>
+        <div class="wrap">
+          <span class="section-eyebrow">Coaching tiers</span>
+          <h2 class="section-title" id="tiers-title">Time-based. Pick the depth you need.</h2>
+          <p class="section-lead">Every session is live and screen-shared. We work in your account, on your real lists, so what we build stays useful the moment we hang up.</p>
+          <div class="tiers">
+            <article class="tier">
+              <div class="tname">Beginner</div>
+              <div class="tfor">Single-question unblocks and quick fixes</div>
+              <div class="price"><b>$95</b><span>/ 30 min</span></div>
+              <div class="perhr">$190 / hour rate</div>
+              <ul>
+                <li>One focused problem solved live</li>
+                <li>Normalizing, dedupes, run conditions</li>
+                <li>Quick credit-saving tweaks</li>
+                <li>Recording so you can rewatch</li>
+              </ul>
+              <a class="pick" href="#checkout">Book Beginner</a>
+            </article>
+            <article class="tier featured">
+              <div class="flag">Most popular</div>
+              <div class="tname">Intermediate</div>
+              <div class="tfor">Build a real workflow end-to-end together</div>
+              <div class="price"><b>$175</b><span>/ 60 min</span></div>
+              <div class="perhr">Best value per hour</div>
+              <ul>
+                <li>Build a full table start to finish</li>
+                <li>Company to domain waterfall to contacts</li>
+                <li>People search done credit-efficiently</li>
+                <li>Notes plus recording to keep</li>
+                <li>Email follow-up for stragglers</li>
+              </ul>
+              <a class="pick" href="#checkout">Book Intermediate</a>
+            </article>
+            <article class="tier">
+              <div class="tname">Advanced</div>
+              <div class="tfor">Agents, models, and deeper automation</div>
+              <div class="price"><b>$275</b><span>/ 60 min</span></div>
+              <div class="perhr">+ async follow-up included</div>
+              <ul>
+                <li>Clay agents and AI prompts</li>
+                <li>API and model setup with Gemini or Claude</li>
+                <li>Waterfall and run-condition logic</li>
+                <li>Scraping pipelines from Firecrawl to Clay</li>
+                <li>Async questions for 3 days after</li>
+              </ul>
+              <a class="pick" href="#checkout">Book Advanced</a>
+            </article>
+          </div>
+          <div class="bundle">
+            <div>
+              <b>5-session pack</b><br />
+              <span>Prepay any tier and lock in your spot. For the committed learner who knows they'll be back.</span>
+            </div>
+            <div class="save">Save 10%</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="checkout" style="padding-top: 10px" aria-labelledby="checkout-title">
+        <span class="blob" style="width: 240px; height: 240px; background: rgba(51, 183, 168, 0.14); top: -30px; left: -60px"></span>
+        <div class="wrap">
+          <span class="section-eyebrow">Book &amp; pay</span>
+          <h2 class="section-title" id="checkout-title">Pick a session and check out</h2>
+          <p class="section-lead">Secure checkout through Stripe. Pick your tier below, pay, and I'll reach out to schedule your session.</p>
+          <div class="stripe-wrap">
+            <stripe-pricing-table
+              pricing-table-id="{{STRIPE_PRICING_TABLE_ID}}"
+              publishable-key="{{STRIPE_PUBLISHABLE_KEY}}"
+            ></stripe-pricing-table>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="how" style="padding-top: 10px" aria-labelledby="how-title">
+        <span class="blob" style="width: 220px; height: 220px; background: rgba(34, 86, 199, 0.1); top: 0; right: -50px"></span>
+        <div class="wrap">
+          <span class="section-eyebrow">How it works</span>
+          <h2 class="section-title" id="how-title">Simple, hands-on, no fluff</h2>
+          <div class="steps">
+            <article class="step">
+              <div class="num">1</div>
+              <h4>Tell me the goal</h4>
+              <p>Send the list or the problem before we meet. I come in already knowing what we're solving so the clock goes to building, not catching up.</p>
+            </article>
+            <article class="step">
+              <div class="num">2</div>
+              <h4>We build it live</h4>
+              <p>You share your screen and stay at the wheel. I guide every click and explain the why, so the workflow makes sense long after the call.</p>
+            </article>
+            <article class="step">
+              <div class="num">3</div>
+              <h4>You keep it</h4>
+              <p>You walk away with a working table, a recording, and the confidence to run the same play again without me.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" style="padding-top: 0" aria-labelledby="retainer-title">
+        <div class="wrap">
+          <div class="upsell">
+            <h3 id="retainer-title">When your client work picks up</h3>
+            <p>If you find yourself running Clay across more lists and clients, I also offer a monthly on-call option, Clay support, workflow reviews before you spend credits, and a build or two each month. No pressure now. It's here when you need it.</p>
+            <span class="pricepill">Monthly retainer from <em>$500/mo</em></span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="book">
+      <div class="wrap">
+        <div class="rule"></div>
+        <div class="footer-logo-chip"><b>C</b><span>Clay Works of Art</span></div>
+        <div class="cta-line">Ready to stop guessing in Clay?</div>
+        <a class="btn btn-primary" href="#checkout">Book a session</a>
+        <div class="contact">
+          Joseph Deville · GTM Engineer<br />
+          <a href="mailto:joseph.deville@cloudanditservices.com">joseph.deville@cloudanditservices.com</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
