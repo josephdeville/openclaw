@@ -176,3 +176,15 @@
 - Publish: `npm publish --access public --otp="<otp>"` (run from the package dir).
 - Verify without local npmrc side effects: `npm view <pkg> version --userconfig "$(mktemp)"`.
 - Kill the tmux session after publish.
+
+## Cursor Cloud specific instructions
+
+- **Bun**: installed at `~/.bun/bin/bun`. Add `export PATH="$HOME/.bun/bin:$PATH"` to your shell or prefix commands if `bun` is not on PATH.
+- **Gateway dev mode**: start with `OPENCLAW_SKIP_CHANNELS=1 OPENCLAW_GATEWAY_TOKEN=dev-test-token pnpm openclaw --dev gateway --port 19001 --force`. This skips channel connections (no API keys needed) and binds to port 19001.
+- **No external services required**: the gateway uses embedded SQLite (`node:sqlite`); no database server is needed.
+- **Commands reference** (see AGENTS.md "Build, Test, and Development Commands" section and `package.json` scripts):
+  - Lint/format: `pnpm check` (runs `format:check` + `tsgo` + `lint`)
+  - Tests: `pnpm test` (vitest, self-contained, no API keys needed)
+  - Build: `pnpm build` (requires `pnpm ui:build` first for the Control UI)
+  - Dev CLI: `pnpm openclaw <command>`
+- **systemd unavailable**: `openclaw doctor` reports systemd user services unavailable in the Cloud Agent container; this is expected. Run the gateway in the foreground instead.
